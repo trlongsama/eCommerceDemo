@@ -1,0 +1,66 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="static/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <link href="static/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="static/assets/admin/pages/css/login.css" rel="stylesheet" type="text/css"/>
+    <link href="static/assets/global/css/components.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="login">
+<div class="content">
+    <h3 class="form-title">User</h3>
+    <div class="form-group">
+        <label calss="control-label">id</label>
+        <div>
+            <label class="control-label"  id="id">
+        </div>
+    </div>
+    <div class="form-group">
+        <label calss="control-label">name</label>
+        <div>
+            <label class="control-label"  id="name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label calss="control-label">telephone</label>
+        <div>
+            <label class="control-label"  id="telephone">
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+
+    var g_userVO = {};
+    jQuery(document).ready(function() {
+        $.ajax({
+            type:"POST",
+            contentType:"application/x-www-form-urlencoded" ,
+            url:"http://localhost:8080/user/account",
+            xhrFields:{
+                withCredentials : true
+            },
+            success:function(data) {
+                if(data.status == "success") {
+                    g_userVO = data.data;
+                    reloadDom();
+                } else {
+                    alert("get account data error " + data.data.errMsg);
+                }
+            },
+            error:function(data) {
+                console.log(data);
+                alert("get account error ", + data.responseText);
+            }
+        });
+    });
+
+    function reloadDom() {
+        $("#id").text(g_userVO.id);
+        $("#name").text(g_userVO.name);
+        $("#telephone").text(g_userVO.telnumber);
+    }
+
+</script>
+</html>

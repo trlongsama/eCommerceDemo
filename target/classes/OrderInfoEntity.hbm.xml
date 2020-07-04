@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.emercial.entities.OrderInfoEntity" table="order_info" schema="ecommercial" dynamic-insert="true" dynamic-update="true">
+        <id name="id">
+            <column name="id" sql-type="varchar(32)" length="32"/>
+        </id>
+        <property name="userId">
+            <column name="user_id" sql-type="int(11)"/>
+        </property>
+        <property name="itemId">
+            <column name="item_id" sql-type="int(11)"/>
+        </property>
+        <property name="itemPrice">
+            <column name="item_price" sql-type="double" precision="-1"/>
+        </property>
+        <property name="amount">
+            <column name="amount" sql-type="int(11)"/>
+        </property>
+        <property name="orderPrice">
+            <column name="order_price" sql-type="double" precision="-1"/>
+        </property>
+    </class>
+</hibernate-mapping>
